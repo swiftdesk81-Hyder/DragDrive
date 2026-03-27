@@ -3,52 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DragDrive | Defense Innovation</title>
+    <title>DragDrive | Premium Pre-Owned Acquisition Network</title>
     <style>
         :root {
-            --bg-black: #050505;
-            --card-gray: #0f0f0f;
-            --border-gray: #1e1e1e;
-            --accent-green: #00ff66; /* Tactical Alert Green */
-            --text-silver: #d1d1d1;
-            --text-dim: #707070;
+            /* Theme 2: Apex Red Color Palette */
+            --apex-red: #e6212a; /* Main Sporty Accent */
+            --dashboard-white: #ffffff; /* Main Legibility Text */
+            --matte-black: #121212; /* Deep Background */
+            --slate-grey: #1a1a1a; /* Industrial Grit / Card Background */
+            --border-grey: #2a2a2a; /* Subtle dividers */
+            --dashboard-yellow: #fdbd10; /* Important Highlight */
+            
+            --base-font: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --brand-font: 'Inter', system-ui, -apple-system, sans-serif; /* For headers */
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: var(--base-font);
         }
 
         body {
-            background-color: var(--bg-black);
-            color: #fff;
+            background-color: var(--matte-black);
+            color: var(--dashboard-white);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Navigation */
+        /* Standard Native Transitions and Clicks */
+        a, button, summary {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        /* NAVIGATION BAR */
         nav {
-            padding: 1.5rem 10%;
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(5, 5, 5, 0.9);
+            background: rgba(18, 18, 18, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-gray);
+            border-bottom: 2px solid var(--border-grey);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .brand {
-            font-size: 1.4rem;
+        .brand-logo {
+            font-family: var(--brand-font);
+            font-size: 1.6rem;
             font-weight: 900;
-            letter-spacing: 3px;
-            color: var(--accent-green);
+            letter-spacing: -1px;
+            color: var(--apex-red);
+            text-transform: uppercase;
         }
 
-        /* Hero Section */
+        .status-tag {
+            font-size: 0.7rem;
+            color: var(--border-grey);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid var(--border-grey);
+            padding: 5px 10px;
+            border-radius: 2px;
+        }
+
+        /* HERO SECTION */
         .hero {
             height: 80vh;
             display: flex;
@@ -56,188 +79,235 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 10%;
-            background: linear-gradient(to bottom, #0a0a0a, #050505);
-            border-bottom: 1px solid var(--border-gray);
+            padding: 0 5%;
+            /* Minimalist asphalt grid background */
+            background-color: var(--matte-black);
+            background-image: 
+                linear-gradient(rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.95)),
+                repeating-linear-gradient(45deg, rgba(26, 26, 26, 0.1) 0, rgba(26, 26, 26, 0.1) 1px, transparent 0, transparent 50%);
+            background-size: cover, 10px 10px;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 10vw, 5rem);
+            font-family: var(--brand-font);
+            font-size: clamp(3rem, 10vw, 6rem);
             font-weight: 900;
             text-transform: uppercase;
+            letter-spacing: -3px;
+            color: var(--dashboard-white);
             margin-bottom: 1rem;
-            letter-spacing: -2px;
+            line-height: 0.9;
         }
 
         .hero p {
             font-size: 1.2rem;
-            color: var(--text-silver);
             max-width: 600px;
-            margin-bottom: 2rem;
+            color: var(--border-grey);
+            margin-bottom: 3rem;
+            font-weight: 300;
         }
 
-        /* Action Buttons */
-        .btn {
-            background: var(--accent-green);
-            color: #000;
-            padding: 15px 35px;
-            text-decoration: none;
-            font-weight: 800;
-            text-transform: uppercase;
-            border-radius: 2px;
-            transition: 0.3s;
-            display: inline-block;
+        /* Interactive details (Collapsible Pillars) */
+        .details-section {
+            padding: 80px 5%;
+            background-color: var(--matte-black);
+            border-top: 5px solid var(--apex-red); /* The Pavement Split */
         }
 
-        .btn:hover {
-            filter: brightness(1.2);
-            box-shadow: 0 0 20px rgba(0, 255, 102, 0.3);
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        /* Project Section */
-        .section {
-            padding: 80px 10%;
-        }
-
-        .section-title {
-            color: var(--accent-green);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            margin-bottom: 40px;
-            display: block;
-        }
-
-        .grid {
+        .spec-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 20px;
+            margin-top: 40px;
         }
 
-        .card {
-            background: var(--card-gray);
-            border: 1px solid var(--border-gray);
-            padding: 40px;
+        /* NATIVE COLLAPSIBLE FEATURE styling */
+        details {
+            background: var(--slate-grey);
+            border: 1px solid var(--border-grey);
+            padding: 20px;
             border-radius: 4px;
-            transition: 0.3s;
+            transition: border-color 0.3s ease;
         }
 
-        .card:hover {
-            border-color: var(--accent-green);
+        details:hover {
+            border-color: var(--apex-red);
         }
 
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+        /* Summary (The clickable header) */
+        summary {
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--dashboard-white);
+            list-style: none; /* Hide standard marker */
+            position: relative;
+            padding-right: 30px;
         }
 
-        .card p {
-            color: var(--text-dim);
+        /* Custom marker (chevron) */
+        summary::after {
+            content: '>';
+            position: absolute;
+            right: 10px;
+            color: var(--border-grey);
+            transform: rotate(90deg);
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(-90deg);
+            color: var(--apex-red);
+        }
+
+        /* Content inside the collapsible */
+        .details-content {
+            padding-top: 20px;
+            color: var(--border-grey);
             font-size: 0.95rem;
         }
 
-        /* Project Highlights */
-        .project-detail {
-            border-top: 1px solid var(--border-gray);
-            padding-top: 60px;
-            margin-top: 60px;
+        .metric {
+            color: var(--dashboard-yellow);
+            font-weight: bold;
         }
 
-        .stat-box {
-            display: flex;
-            gap: 50px;
-            margin-top: 30px;
-        }
-
-        .stat-item h4 {
-            color: var(--accent-green);
-            font-size: 2rem;
-        }
-
-        .stat-item span {
-            font-size: 0.8rem;
-            color: var(--text-dim);
-            text-transform: uppercase;
-        }
-
-        /* Footer */
-        footer {
-            padding: 60px 10%;
-            border-top: 1px solid var(--border-gray);
+        /* INQUIRY NOW / Apply Now SECTION (Hidden Email) */
+        .inquiry-section {
+            padding: 80px 5%;
             text-align: center;
+            background-color: var(--slate-grey);
+            border-bottom: 5px solid var(--apex-red); /* The Velocity Split */
         }
 
-        .contact-text {
-            color: var(--text-dim);
-            margin-bottom: 20px;
+        .inquiry-section h2 {
+            font-family: var(--brand-font);
+            text-transform: uppercase;
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
         }
 
-        @media (max-width: 768px) {
-            .stat-box { flex-direction: column; gap: 20px; }
-            .hero h1 { font-size: 3rem; }
+        .inquiry-text {
+            color: var(--border-grey);
+            max-width: 500px;
+            margin: 0 auto 3rem;
+        }
+
+        /* SPORTY PULSATING CTA BUTTON */
+        .btn-inquire {
+            display: inline-block;
+            padding: 20px 60px;
+            background-color: var(--apex-red);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 2px;
+            border: none;
+            /* Exciting feature animation */
+            animation: pulse-red 2s infinite;
+        }
+
+        /* Define the Pulsating Animation */
+        @keyframes pulse-red {
+            0% {
+                box-shadow: 0 0 0 0 rgba(230, 33, 42, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(230, 33, 42, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(230, 33, 42, 0);
+            }
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 40px 5%;
+            text-align: center;
+            color: #333;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 3rem; letter-spacing: -1px; }
+            .inquiry-section h2 { font-size: 1.8rem; }
+            .btn-inquire { padding: 15px 40px; width: 100%; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="brand">DRAGDRIVE</div>
-        <div style="font-size: 0.8rem; color: var(--text-dim);">INDIVIDUAL INNOVATOR TRACK</div>
+        <div class="brand-logo">DRAGDRIVE</div>
+        <div class="status-tag">OPS // TRACK v1.0.9</div>
     </nav>
 
     <header class="hero">
         <h1>DRAGDRIVE</h1>
-        <p>Advanced projectile delivery systems and autonomous defense hardware. Bridging the gap between garage-level prototyping and national defense standards.</p>
-        <a href="mailto:swiftdesk81@gmail.com" class="btn">Apply Now</a>
+        <p>Premium pre-owned acquisition. Advancing verified dealer stock to genuine retail buyers.</p>
     </header>
 
-    <section class="section">
-        <span class="section-title">Operational Focus</span>
-        <div class="grid">
-            <div class="card">
-                <h3>iDEX Prototype</h3>
-                <p>Developing specialized drone-based projectile systems designed for the Innovations for Defence Excellence (iDEX) incubator. High-precision, rapid-deployment engineering.</p>
-            </div>
-            <div class="card">
-                <h3>Asymmetric R&D</h3>
-                <p>Utilizing 3D printing and high-energy materials science to reduce manufacturing costs while maintaining Tier-1 performance metrics. Rapid iteration, zero bloat.</p>
-            </div>
-            <div class="card">
-                <h3>Scalable Logistics</h3>
-                <p>Built on the foundation of the CarCubs business model, DragDrive focuses on lean operational margins (35-40%) for high-impact defense contracts.</p>
-            </div>
-        </div>
+    <section class="details-section">
+        <div class="container">
+            <h2 style="color: var(--border-grey); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px;">Core Focus & Margins</h2>
+            <div class="spec-grid">
+                
+                <details>
+                    <summary>Dealer-Vetted Inventory</summary>
+                    <div class="details-content">
+                        Hand-selected performance and luxury stock sourced exclusively from the region’s most reputed dealer groups. Vetted by our technical teams.
+                    </div>
+                </details>
 
-        <div class="project-detail">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">System Specifications</h2>
-            <p style="color: var(--text-dim); max-width: 700px;">Focusing on small-scale, high-repetition testing. We specialize in materials and propulsion systems optimized for payload delivery in complex environments.</p>
-            
-            <div class="stat-box">
-                <div class="stat-item">
-                    <h4>3D-PRT</h4>
-                    <span>Core Body Construction</span>
-                </div>
-                <div class="stat-item">
-                    <h4>40%</h4>
-                    <span>Target Op-Margin</span>
-                </div>
-                <div class="stat-item">
-                    <h4>250g+</h4>
-                    <span>Testing Payload</span>
-                </div>
+                <details>
+                    <summary>Market Advantage</summary>
+                    <div class="details-content">
+                        Strong dealer partnerships allow asymmetric access to verified, off-market stock before public listing. Zero bloat.
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Scalable Efficiency</summary>
+                    <div class="details-content">
+                        Focused sourcing logic optimized for rapid repetition velocity and high-demand turn cycles.
+                        <br>
+                        <span class="metric">Operational Margin Target: 35-40%</span>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Multi-Point Verification</summary>
+                    <div class="details-content">
+                        Full technical multi-point inspection and complete history certification are mandatory for any acquisition entering the DragDrive network.
+                    </div>
+                </details>
+
             </div>
         </div>
     </section>
 
-    <section class="section" style="background: #080808; text-align: center;">
-        <h2 style="margin-bottom: 20px;">READY FOR OPERATIONS</h2>
-        <p class="contact-text">Currently seeking partnerships for individual innovator proofs and government submissions.</p>
-        <a href="mailto:swiftdesk81@gmail.com" style="color: var(--accent-green); font-weight: bold; text-decoration: none; font-size: 1.2rem;">swiftdesk81@gmail.com</a>
+    <section class="inquiry-section">
+        <div class="container">
+            <h2>INITIATE INQUIRY</h2>
+            <p class="inquiry-text">Currently seeking strategic partners and genuine buyer acquisitions looking for verified, premium dealer-sourced stock.</p>
+            
+            <a href="mailto:dragdrive.com@gmail.com" class="btn-inquire">Inquire Now</a>
+        </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 DRAGDRIVE | Mumbai Division</p>
-        <p style="font-size: 0.7rem; color: #444; margin-top: 10px;">Security Status: Active // Prototype Phase</p>
+        <p>&copy; 2026 DRAGDRIVE | Mumbai Division | High-Margin Automotive Sourcing</p>
     </footer>
 
 </body>
